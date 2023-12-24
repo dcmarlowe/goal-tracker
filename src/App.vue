@@ -6,6 +6,7 @@ import HistoryChart from './components/HistoryChart.vue';
 import FileUploadForm from './components/FileUploadForm.vue';
 import DownloadLink from './components/DownloadLink.vue';
 import DailyList from './components/DailyList.vue';
+import ArchivedGoalList from './components/ArchivedGoalList.vue';
 import { getToday, setCompletedOn, completedToday } from './helpers';
 
 const newGoal = ref("");
@@ -54,6 +55,7 @@ function updateGoal(goal: Goal) {
   <DownloadLink /> | 
   <FileUploadForm @infoUploaded="handleInfoUploaded($event)" />
   <DailyList v-if="goals.length > 0" :today="today" :goals="goals"/>
+  <ArchivedGoalList :goals="goals" />
   <HistoryChart v-if="goals.length > 0" :daysToShow="14" :goals="goals"/>
 
   <!-- <RouterView /> -->
