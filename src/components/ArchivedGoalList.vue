@@ -19,6 +19,11 @@ function restoreGoal(goal: Goal){
   goal.isArchived = false;
   storeGoalCollection(props.goals);
 }
+
+function deleteGoal(goal: Goal) {
+  props.goals.removeGoal(goal);
+  storeGoalCollection(props.goals);
+}
 </script>
 
 <template >
@@ -30,6 +35,7 @@ function restoreGoal(goal: Goal){
       {{ goal.name }}
       
       <font-awesome-icon icon="archive" @click="restoreGoal(goal)"></font-awesome-icon>
+      <font-awesome-icon icon="trash" @click="deleteGoal(goal)"></font-awesome-icon>
     </li>
   </ul>
 </div>
@@ -44,6 +50,9 @@ ul {
 li {
   text-transform: capitalize;
   list-style-type: none;
+}
+svg {
+  margin-right: 7px;
 }
 
 </style>

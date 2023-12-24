@@ -38,7 +38,7 @@ function archiveGoal(goal: Goal){
 <template>
   <p>For {{ today }}</p>
   <ul>
-    <li v-for="(goal, i) in goals.filter(x => x.isArchived !== true)" :key="i">
+    <li v-for="(goal, i) in goals.filter(x => x.isArchived !== true).applyDefaultSort()" :key="i">
       <input type="checkbox" :checked="completedToday(goal)" @change="event => goalChecked(goal, event)" :id="'goal'+i" />
       <form v-show="toEdit === i" @submit.prevent="updateGoal(goal)">
         <input type="text" v-model="goal.name" required onfocus="this.select();" :id="'tbGoalName'+i"/>
