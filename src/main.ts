@@ -8,13 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faEdit, faCheck, faArchive, faTrash } from '@fortawesome/free-solid-svg-icons'
 import router from './router'
-import { loadArrayExtensions } from './array-extensions'
+import { loadGoalExtensions } from './goal'
+
+loadGoalExtensions();
 
 /* add icons to the library */
 library.add(faEdit, faCheck, faArchive, faTrash)
-
-loadArrayExtensions();
-
 const app = createApp(App)
 
 app.use(router)

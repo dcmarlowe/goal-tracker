@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onUpdated, onMounted } from 'vue';
 import type { Goal } from '../goal';
 import { storeGoalCollection } from '../data-access';
 import { completedToday, setCompletedOn } from '../helpers';
 
 const toEdit = ref(-1);
 const props = defineProps<{
-  goals: Goal[],
+  goals: Array<Goal>,
   today: string
 }>();
 
@@ -33,12 +33,18 @@ function archiveGoal(goal: Goal){
   goal.isArchived = true;
   storeGoalCollection(props.goals);
 }
+onUpdated(() => {
+  console.log('goals in daily list', props.goals.active);
+});
+onMounted(() => {
+  console.log('goals in daily list', props.goals.active);
+});
 </script>
 
 <template>
   <p>For {{ today }}</p>
   <ul>
-    <li v-for="(goal, i) in goals.filter(x => x.isArchived !== true).applyDefaultSort()" :key="i">
+    <li v-for="(goal, i) in goals.active().applyDefaultSort()" :key="i">
       <input type="checkbox" :checked="completedToday(goal)" @change="event => goalChecked(goal, event)" :id="'goal'+i" />
       <form v-show="toEdit === i" @submit.prevent="updateGoal(goal)">
         <input type="text" v-model="goal.name" required onfocus="this.select();" :id="'tbGoalName'+i"/>

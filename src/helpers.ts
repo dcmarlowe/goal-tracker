@@ -56,3 +56,18 @@ export function formatDate(source: Date): string {
 export function completedToday(goal: Goal): boolean {
   return goal.completedOn.includes(today);
 }
+
+export function getSortGroup(goal: Goal): number{
+
+  const doneToday = completedToday(goal);
+  const doneYesterday = completedOn(goal, yesterday);
+
+  if(doneToday === false && doneYesterday=== false) {
+    return 1; // show these first
+  } else if (doneToday === false && doneYesterday === true) {
+    return 2; // show these next
+  } else {
+    return 3; // and all the rest
+  }
+  
+}
