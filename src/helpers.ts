@@ -71,3 +71,11 @@ export function getSortGroup(goal: Goal): number{
   }
   
 }
+
+export function getMostRecentCompletionDate(goal: Goal): string {
+  if(goal.completedOn === null || goal.completedOn === undefined || goal.completedOn?.length === 0) {
+    return '1900-01-01';
+  }
+
+  return goal.completedOn.sort((x,y) => x > y ? -1: 1).find(x => true) ?? '1900-01-01';
+}

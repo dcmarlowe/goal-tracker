@@ -10,7 +10,7 @@ export function ensureGoalCollection(): Goal[] {
         localStorage.setItem(key, toReturn);
     }
 
-    return JSON.parse(toReturn);
+    return JSON.parse(toReturn).applyDefaultSort();
 }
 
 export function storeGoalCollection(collection: Goal[]) {

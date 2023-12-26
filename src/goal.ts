@@ -1,5 +1,5 @@
 
-import { completedOn, completedToday, getSortGroup, yesterday } from "./helpers";
+import { completedOn, completedToday, getMostRecentCompletionDate, getSortGroup, yesterday } from "./helpers";
 
 export interface Goal {
     name: string;
@@ -27,6 +27,17 @@ export function loadGoalExtensions() {
         this.sort((x: Goal, y: Goal) => {
             let orderX = getSortGroup(x);
             let orderY = getSortGroup(y);
+
+            if(orderX === orderY) {
+                let mostRecentCompletionX = getMostRecentCompletionDate(x);
+                let mostRecentCompletionY = getMostRecentCompletionDate(y);
+
+                if(mostRecentCompletionX === mostRecentCompletionY){
+                    return x.name > y.name ? 1 : -1;
+                }
+
+                return mostRecentCompletionX > mostRecentCompletionY ? 1:-1;
+            }
 
             return orderX < orderY ? -1 : 1;
         });
