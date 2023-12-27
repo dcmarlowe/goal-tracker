@@ -1,5 +1,5 @@
 <template>
-  <a @click.prevent="show = !show">Import Goals</a>
+  <a @click.prevent="show = !show">Import</a>
   <div v-show="show" >
     <hr/>
     <form @submit.prevent="handleUpload" ref="uploadDocumentForm">

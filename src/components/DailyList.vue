@@ -72,7 +72,7 @@ onMounted(() => {
       <label v-if="toEdit !== i" :for="'goal'+i">{{ goal.name }}</label>
       <font-awesome-icon v-if="toEdit !== i" icon="edit" @click="startEdit(i)"></font-awesome-icon>
       <font-awesome-icon icon="archive" @click="archiveGoal(goal)"></font-awesome-icon>
-      <a @click.prevent="convertToTask(goal)">Convert To Task</a>
+      <font-awesome-icon icon="tasks" @click="convertToTask(goal)"></font-awesome-icon>
     </li>
   </ul>
 </template>

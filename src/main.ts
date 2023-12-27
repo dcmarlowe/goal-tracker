@@ -6,7 +6,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
-import { faEdit, faCheck, faArchive, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faCheck, faArchive, faTrash, faTasks } from '@fortawesome/free-solid-svg-icons'
 import router from './router'
 import { loadGoalExtensions } from './models/goal'
 import { loadProjectExtensions } from './models/project'
@@ -15,7 +15,7 @@ loadGoalExtensions();
 loadProjectExtensions();
 
 /* add icons to the library */
-library.add(faEdit, faCheck, faArchive, faTrash)
+library.add(faEdit, faCheck, faArchive, faTrash, faTasks)
 const app = createApp(App)
 
 app.use(router)

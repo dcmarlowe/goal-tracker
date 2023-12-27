@@ -35,6 +35,53 @@ h2 {
 }
 
 
+form {
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+label, li form {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+li form {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+li form input[type="text"] {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 0px;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
+}
+
 
 ul {
   padding-left: 0px;
