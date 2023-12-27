@@ -22,6 +22,8 @@ function addNewProject() {
   projects.value.push(newProj);
 
   storeProjectCollection(projects.value);
+
+  newProjectName.value = '';
 }
 
 onMounted(() => {

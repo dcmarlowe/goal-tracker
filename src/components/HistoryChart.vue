@@ -4,7 +4,7 @@
   <hr/>
   <div class="row" v-for="goal in goals.filter(x => x.isArchived !== true)" :key="goal.name" >
     <p>{{ goal.name }}</p>
-    <div class="dateBlock" v-for="(day, i) in days" :key="day" v-bind:completed="completedOn(goal, day)" @click="toggleCompleted(goal, day)">{{ day.substring(5) }}</div>
+    <div class="dateBlock" v-for="(day, i) in days" :key="day" v-bind:include-on-mobile="i > days.length - 8" v-bind:completed="completedOn(goal, day)" @click="toggleCompleted(goal, day)">{{ day.substring(5) }}</div>
   </div>
 </template>
 
@@ -76,5 +76,12 @@ p{
 .dateBlock[completed='false'] {
   background-color: darkgray;
   color: black;
+}
+
+
+@media (max-width: 600px) {
+  .dateBlock[include-on-mobile='false'] {
+    display: none;
+  }
 }
 </style>

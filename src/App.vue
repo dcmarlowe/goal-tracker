@@ -51,8 +51,7 @@ onMounted(() => {
   <form @submit.prevent="addGoal()">
     <input placeholder="Enter a new goal here" v-model="newGoal" required/>
     <button type="submit">Add it!</button>
-  </form>
-  <DownloadLink /> | 
+  </form> 
   <FileUploadForm @infoUploaded="handleInfoUploaded($event)" />
   <DailyList v-if="goals.length > 0" :today="today" :goals="goals"/>
   <Tasks />
