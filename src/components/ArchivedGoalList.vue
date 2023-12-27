@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { Goal } from '../goal';
 import { storeGoalCollection } from '../data-access';
-import { completedToday, setCompletedOn } from '../helpers';
+import type { Goal } from '@/models/goal';
 
 const show = computed(() => {
   if(props.goals === null || props.goals === undefined) {

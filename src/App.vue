@@ -1,19 +1,17 @@
 <script setup lang="ts">
-import { ref, onMounted, getTransitionRawChildren } from 'vue';
-import type { Goal } from './goal';
-import { ensureGoalCollection, storeGoalCollection, downloadAll } from './data-access';
+import { ref, onMounted } from 'vue';
+import { ensureGoalCollection, storeGoalCollection } from './data-access';
 import HistoryChart from './components/HistoryChart.vue';
 import FileUploadForm from './components/FileUploadForm.vue';
 import DownloadLink from './components/DownloadLink.vue';
 import DailyList from './components/DailyList.vue';
 import ArchivedGoalList from './components/ArchivedGoalList.vue';
-import ProjectList from './components/ProjectList.vue';
 import Projects from './views/Projects.vue';
-import { getToday, setCompletedOn, completedToday } from './helpers';
-import type { Project } from './models/project';
+import { getToday } from './helpers';
 import Tasks from './views/Tasks.vue';
 import DownloadEverythingLink from './components/DownloadEverythingLink.vue';
 import ImportEverythingForm from './components/ImportEverythingForm.vue';
+import type { Goal } from './models/goal';
 
 const newGoal = ref("");
 const toEdit = ref(-1);

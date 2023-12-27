@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Goal } from '@/goal';
+import type { Goal } from '@/models/goal';
 import { onMounted, ref } from 'vue';
 import { completedOn, formatDate, toggleCompletedOn } from '@/helpers';
 import { storeGoalCollection } from '@/data-access';
