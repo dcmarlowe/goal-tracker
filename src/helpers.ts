@@ -1,4 +1,4 @@
-import type { Goal } from "./goal";
+import type { Goal } from "./models/goal";
 
 export const today = getToday();
 export const yesterday = getYesterday();

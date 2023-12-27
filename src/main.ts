@@ -8,9 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faEdit, faCheck, faArchive, faTrash } from '@fortawesome/free-solid-svg-icons'
 import router from './router'
-import { loadGoalExtensions } from './goal'
+import { loadGoalExtensions } from './models/goal'
+import { loadProjectExtensions } from './models/project'
 
 loadGoalExtensions();
+loadProjectExtensions();
 
 /* add icons to the library */
 library.add(faEdit, faCheck, faArchive, faTrash)

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, onUpdated, onMounted } from 'vue';
-import type { Goal } from '../goal';
-import { storeGoalCollection } from '../data-access';
+import type { Goal } from '@/models/goal';
+import { ensureTaskCollection, storeGoalCollection, storeTaskCollection } from '../data-access';
 import { completedToday, setCompletedOn } from '../helpers';
+import type { Task } from '@/models/task';
 
 const toEdit = ref(-1);
 const props = defineProps<{
@@ -33,6 +34,24 @@ function archiveGoal(goal: Goal){
   goal.isArchived = true;
   storeGoalCollection(props.goals);
 }
+function convertToTask(goal: Goal) {
+  let task: Task = {
+    name: goal.name,
+    isComplete: false,
+    addedOn: goal.addedOn
+  };
+
+  let tasks = ensureTaskCollection();
+  tasks.push(task);
+  storeTaskCollection(tasks);
+
+  props.goals.removeGoal(goal);
+  storeGoalCollection(props.goals);
+
+  setTimeout(() => {
+    location.reload();
+  }, 250);
+}
 onUpdated(() => {
   console.log('goals in daily list', props.goals.active);
 });
@@ -53,6 +72,7 @@ onMounted(() => {
       <label v-if="toEdit !== i" :for="'goal'+i">{{ goal.name }}</label>
       <font-awesome-icon v-if="toEdit !== i" icon="edit" @click="startEdit(i)"></font-awesome-icon>
       <font-awesome-icon icon="archive" @click="archiveGoal(goal)"></font-awesome-icon>
+      <a @click.prevent="convertToTask(goal)">Convert To Task</a>
     </li>
   </ul>
 </template>
@@ -61,28 +81,6 @@ onMounted(() => {
 
 form {
   display: inline-block;
-}
-
-ul {
-  padding-left: 0px;
-}
-
-li {
-  text-transform: capitalize;
-  list-style-type: none;
-}
-li input,
-li label,
-li form {
-  margin-right: 15px;
-}
-li svg {
-  margin-right: 7px;
-}
-li form input[type="text"] {
-  background-color: transparent;
-  color: var(--color-text);
-  border: 0px;
 }
 
 </style>

@@ -7,7 +7,13 @@ import FileUploadForm from './components/FileUploadForm.vue';
 import DownloadLink from './components/DownloadLink.vue';
 import DailyList from './components/DailyList.vue';
 import ArchivedGoalList from './components/ArchivedGoalList.vue';
+import ProjectList from './components/ProjectList.vue';
+import Projects from './views/Projects.vue';
 import { getToday, setCompletedOn, completedToday } from './helpers';
+import type { Project } from './models/project';
+import Tasks from './views/Tasks.vue';
+import DownloadEverythingLink from './components/DownloadEverythingLink.vue';
+import ImportEverythingForm from './components/ImportEverythingForm.vue';
 
 const newGoal = ref("");
 const toEdit = ref(-1);
@@ -39,10 +45,6 @@ onMounted(() => {
   goals.value = ensureGoalCollection();
 });
 
-function updateGoal(goal: Goal) {
-  storeGoalCollection(goals.value);
-  toEdit.value = -1;
-}
 </script>
 
 <template>
@@ -55,9 +57,11 @@ function updateGoal(goal: Goal) {
   <DownloadLink /> | 
   <FileUploadForm @infoUploaded="handleInfoUploaded($event)" />
   <DailyList v-if="goals.length > 0" :today="today" :goals="goals"/>
+  <Tasks />
+  <Projects />
   <ArchivedGoalList :goals="goals" />
   <HistoryChart v-if="goals.length > 0" :daysToShow="14" :goals="goals"/>
-
+  <DownloadEverythingLink /> | <ImportEverythingForm />
   <!-- <RouterView /> -->
 </template>
 
