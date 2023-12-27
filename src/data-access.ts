@@ -1,3 +1,4 @@
+import { ensureWeeklyGoalCollection } from "./data-access/weekly-goals.data-access";
 import type { Goal } from "./models/goal";
 import type { Project } from "./models/project";
 import type { Task } from "./models/task";
@@ -36,11 +37,13 @@ export function downloadEverything(): string {
     let goals = ensureGoalCollection();
     let projects = ensureProjectCollection();
     let tasks = ensureTaskCollection();
+    let weeklyGoals = ensureWeeklyGoalCollection();
 
     let toExport = {
         goals, 
         projects,
-        tasks
+        tasks,
+        weeklyGoals
     };
 
     let content = JSON.stringify(toExport);

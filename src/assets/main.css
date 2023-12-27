@@ -104,3 +104,9 @@ li form input[type="text"] {
   color: var(--color-text);
   border: 0px;
 }
+
+footer{
+  margin-top: 30px;
+  border-top: solid 1px lightgray;
+  text-align: center;
+}

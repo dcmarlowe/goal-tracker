@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { storeGoalCollection, storeProjectCollection, storeTaskCollection } from '@/data-access';
+import {storeWeeklyGoalCollection } from '@/data-access/weekly-goals.data-access';
 import { ref } from 'vue';
 
 
@@ -43,6 +44,7 @@ function readJsonFile(file: File) {
       storeGoalCollection(json.goals || []);
       storeProjectCollection(json.projects || []);
       storeTaskCollection(json.tasks || []);
+      storeWeeklyGoalCollection(json.weeklyGoals || []);
 
       setTimeout(() => {
         location.reload();

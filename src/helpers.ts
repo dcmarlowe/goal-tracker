@@ -79,3 +79,17 @@ export function getMostRecentCompletionDate(goal: Goal): string {
 
   return goal.completedOn.sort((x,y) => x > y ? -1: 1).find(x => true) ?? '1900-01-01';
 }
+
+export function getCurrentWeekStartDate(): string {
+  var date = new Date();
+  var day = date.getDay();
+  var prevMonday = new Date();
+  if(date.getDay() == 0){
+      prevMonday.setDate(date.getDate() - 7);
+  }
+  else{
+      prevMonday.setDate(date.getDate() - (day-1));
+  }
+
+  return formatDate(prevMonday);
+}
