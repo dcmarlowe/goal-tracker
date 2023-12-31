@@ -23,7 +23,7 @@ function updateProject() {
     <label>Priority Order:</label>
     <input type="text" v-model="project.order" placeholder="Priority Order" />
     <label>Remaining Effort:</label>
-    <input type="text" v-model="project.remainingEffort" placeholder="Remaining Effort" />
+    <input type="number" v-model="project.remainingEffort" placeholder="Remaining Effort" />
     <label>External Link:</label>
     <input type="text" v-model="project.link" placeholder="External Link" />
     <button type="submit">Submit</button>

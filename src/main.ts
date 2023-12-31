@@ -10,9 +10,11 @@ import { faEdit, faCheck, faArchive, faTrash, faTasks } from '@fortawesome/free-
 import router from './router'
 import { loadGoalExtensions } from './models/goal'
 import { loadProjectExtensions } from './models/project'
+import { loadTaskExtensions } from './models/task'
 
 loadGoalExtensions();
 loadProjectExtensions();
+loadTaskExtensions();
 
 /* add icons to the library */
 library.add(faEdit, faCheck, faArchive, faTrash, faTasks)

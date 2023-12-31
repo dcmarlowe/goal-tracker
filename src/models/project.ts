@@ -25,7 +25,7 @@ export function loadProjectExtensions() {
     // @ts-ignore
     (Array<T>).prototype.applyDefaultProjectSort = function(): Array<T> {
         this.sort((x: Project, y: Project) => {
-            return (x.remainingEffort ?? 0 ) < (y.remainingEffort ?? 0) ? 1 : -1;
+            return (x.remainingEffort ?? 0 ) < (y.remainingEffort ?? 0) ? -1 : 1;
         });
 
         return this;

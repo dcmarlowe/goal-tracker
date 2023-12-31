@@ -79,7 +79,7 @@ export function ensureTaskCollection(): Task[] {
         localStorage.setItem(taskKey, toReturn);
     }
 
-    return JSON.parse(toReturn).applyDefaultProjectSort();
+    return JSON.parse(toReturn).applyDefaultTaskSort();
 }
 
 export function storeTaskCollection(collection: Task[]){

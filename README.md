@@ -13,7 +13,7 @@ Deploy the site to prod by running `swa deploy --deployment-token {your token he
 - [ ] Rolling Avg Completed Per Day
 - [ ] Completed Per Day Graph
 - [ ] Unit tests
+- [ ] Reminder to export data
 - [X] Sort/Order Projects
 - [X] Add links to projects
-- [ ] Reminder to export data
-- [ ] Order Tasks
+- [X] Order Tasks
