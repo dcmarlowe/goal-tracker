@@ -4,7 +4,11 @@ Run `npm run install` from the root directory to install all necessary dependenc
 
 Run `npm run dev` from the root directory to launch a development instance of the site. 
 
-Deploy the site to prod by running `swa deploy --deployment-token {your token here} --env production`
+The site can be deployed via the Azure SWA command line tool. Run the following command to install it:
+
+```npm install -g @azure/static-web-apps-cli```
+
+Then deploy the site to prod by running `swa deploy --deployment-token {your token here} --env production`
 
 ## Upcoming Features
 
