@@ -41,7 +41,7 @@ form {
   margin-bottom: 15px;
   margin-right: 15px;
 }
-label, li form {
+li form {
   margin-left: 15px;
   margin-right: 15px;
 }
@@ -96,7 +96,7 @@ li label,
 li form {
   margin-right: 15px;
 }
-li svg {
+svg {
   margin-right: 7px;
 }
 li form input[type="text"] {
@@ -109,4 +109,14 @@ footer{
   margin-top: 30px;
   border-top: solid 1px lightgray;
   text-align: center;
+}
+
+table {
+  th {
+    font-weight: bolder;
+  }
+  th,td {
+    text-align: left;
+    padding-right: 20px;
+  }
 }

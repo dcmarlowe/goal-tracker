@@ -29,6 +29,12 @@ function addNewProject() {
 onMounted(() => {
   projects.value = ensureProjectCollection();
 });
+
+function handleProjectUpdated() {
+  storeProjectCollection(projects.value);
+  // @ts-ignore
+  toEdit.value = null;
+}
 </script>
 
 <template>
@@ -38,8 +44,8 @@ onMounted(() => {
     <input placeholder="Enter a new project name here" v-model="newProjectName" required/>
     <button type="submit">Add it!</button>
   </form>
-  <ProjectList :projects="projects" />
-  <ProjectForm :project="toEdit" v-if="toEdit !== null" />
+  <ProjectList :projects="projects" @startEdit="toEdit = $event" />
+  <ProjectForm :project="toEdit" v-if="toEdit !== null" @projectUpdated="handleProjectUpdated()" />
 </template>
 
 <style scoped>

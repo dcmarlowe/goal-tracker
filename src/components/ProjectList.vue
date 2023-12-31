@@ -7,20 +7,13 @@ const toEdit = ref(-1);
 const props = defineProps<{
   projects: Array<Project>
 }>();
+const emits = defineEmits(['startEdit'])
 
 function updateProjectName(project: Project) {
   storeProjectCollection(props.projects);
   toEdit.value = -1;
 }
 
-function startEdit(i: number) {
-  // toEdit.value = i;
-  // setTimeout(() => {
-  //   const editBox = document.getElementById(`tbProjectName${i}`);
-  //   console.log(editBox);
-  //   editBox?.focus();
-  // }, 250);
-}
 function archiveProject(project: Project){
   project.isArchived = true;
   storeProjectCollection(props.projects);
@@ -30,37 +23,40 @@ function archiveProject(project: Project){
 <template>
   <h2>Active Projects</h2>
   <hr/>
-  <ol>
-    <li v-for="(project, i) in projects.activeProjects()" :key="i">
-      <!-- todo - edit functionality -->
-      {{ project.name }}
-      <font-awesome-icon v-if="toEdit !== i" icon="edit" @click="startEdit(i)"></font-awesome-icon>
-      <font-awesome-icon icon="archive" @click="archiveProject(project)"></font-awesome-icon>
-    </li>
-  </ol>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Name (Link)
+        </th>
+        <th>
+          Effort Left
+        </th>
+        <th>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(project, i) in projects.activeProjects()" :key="i">
+        <td>
+          <a :href="project.link" target="_blank" v-if="!!project.link">
+            {{ project.name }}
+          </a>
+          <span v-else>
+            {{ project.name }}
+          </span>
+        </td>
+        <td>
+          {{ project.remainingEffort || 'N/A' }}
+        </td>
+        <td>
+          <font-awesome-icon v-if="toEdit !== i" icon="edit" @click="emits('startEdit', project)"></font-awesome-icon>
+          <font-awesome-icon icon="archive" @click="archiveProject(project)"></font-awesome-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style scoped>
-ul {
-  padding-left: 0px;
-}
-
-li {
-  text-transform: capitalize;
-  list-style-type: none;
-}
-li input,
-li label,
-li form {
-  margin-right: 15px;
-}
-li svg {
-  margin-right: 7px;
-}
-li form input[type="text"] {
-  background-color: transparent;
-  color: var(--color-text);
-  border: 0px;
-}
-
 </style>
