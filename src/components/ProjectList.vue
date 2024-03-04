@@ -1,28 +1,40 @@
 <script setup lang="ts">
 import { storeProjectCollection } from '@/data-access';
+import { array_move } from '@/helpers';
 import type { Project } from '@/models/project';
 import { ref, onUpdated, onMounted } from 'vue';
 
 const toEdit = ref(-1);
+const showArchived = ref(false);
 const props = defineProps<{
   projects: Array<Project>
 }>();
 const emits = defineEmits(['startEdit'])
 
-function updateProjectName(project: Project) {
+function archiveProject(project: Project, index: number){
+  console.log('archiving', index, project);
+  project.isArchived = true;
+  array_move(props.projects, index, props.projects.length - 1);
   storeProjectCollection(props.projects);
-  toEdit.value = -1;
 }
 
-function archiveProject(project: Project){
-  project.isArchived = true;
+function moveDown(i: number){
+  array_move(props.projects, i, i + 1);
+  storeProjectCollection(props.projects);
+}
+
+function moveUp(i: number){
+  array_move(props.projects, i, i - 1);
+  storeProjectCollection(props.projects);
+}
+
+function moveToTop(i: number){
+  array_move(props.projects, i, 0);
   storeProjectCollection(props.projects);
 }
 </script>
 
 <template>
-  <h2>Active Projects</h2>
-  <hr/>
   <table>
     <thead>
       <tr>
@@ -37,26 +49,45 @@ function archiveProject(project: Project){
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(project, i) in projects.activeProjects()" :key="i">
-        <td>
-          <a :href="project.link" target="_blank" v-if="!!project.link">
-            {{ project.name }}
-          </a>
-          <span v-else>
-            {{ project.name }}
-          </span>
-        </td>
-        <td>
-          {{ project.remainingEffort || 'N/A' }}
-        </td>
-        <td>
-          <font-awesome-icon v-if="toEdit !== i" icon="edit" @click="emits('startEdit', project)"></font-awesome-icon>
-          <font-awesome-icon icon="archive" @click="archiveProject(project)"></font-awesome-icon>
-        </td>
-      </tr>
+      <template v-for="(project, i) in projects" :key="i">
+        <tr v-show="(project.isArchived === false || showArchived === true)">
+          <td>  
+            <span v-if="project.isArchived == true">
+              Archived -
+            </span>
+            <span v-else>
+              {{ i + 1 }} - 
+            </span>
+            <a :href="project.link" target="_blank" v-if="!!project.link">
+              {{ project.name }}
+            </a>
+            <span v-else>
+              {{ project.name }}
+            </span>
+          </td>
+          <td>
+            <span v-if="project.isArchived == false">
+              {{ project.remainingEffort || 'N/A' }}
+            </span>
+          </td>
+          <td>
+            <font-awesome-icon v-if="toEdit !== i" icon="edit" @click="emits('startEdit', project)"></font-awesome-icon>
+            <font-awesome-icon icon="archive" @click="archiveProject(project, i)"></font-awesome-icon>
+            <font-awesome-icon icon="arrow-down" @click="moveDown(i)" v-if="i < (projects.length - 1)"></font-awesome-icon>
+            <template v-if="i !== 0">
+              <font-awesome-icon icon="arrow-up" @click="moveUp(i)"></font-awesome-icon> | 
+              <a @click="moveToTop(i)">To Top</a>
+            </template>
+            
+          </td>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
 
 <style scoped>
+a {
+  padding: 0px !important;
+}
 </style>

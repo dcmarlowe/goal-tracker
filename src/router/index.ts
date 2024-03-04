@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DailyGoals from '../views/DailyGoals.vue';
 import Projects from '../views/Projects.vue';
 import Tasks from '../views/Tasks.vue';
+import TasksAndProjects from '../views/TasksAndProjects.vue';
 import WeeklyGoals from '../views/WeeklyGoals.vue';
 
 const router = createRouter({
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/tasks',
       name: 'tasks',
       component: Tasks
+    },
+    {
+      path: '/tasks-and-projects',
+      name: 'tasks-and-projects',
+      component: TasksAndProjects
     },
     {
       path: '/projects',

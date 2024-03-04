@@ -63,7 +63,7 @@ export function ensureProjectCollection(): Project[] {
         localStorage.setItem(projectKey, toReturn);
     }
 
-    return JSON.parse(toReturn).applyDefaultProjectSort();
+    return JSON.parse(toReturn);//.applyDefaultProjectSort();
 }
 
 export function storeProjectCollection(collection: Project[]){

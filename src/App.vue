@@ -7,8 +7,8 @@ import ImportEverythingForm from './components/ImportEverythingForm.vue';
   <nav>
     <RouterLink to="/">Daily Goals</RouterLink> |
     <RouterLink to="/weekly-goals">Weekly Goals</RouterLink> |
-    <RouterLink to="/tasks">Tasks</RouterLink> |
-    <RouterLink to="/projects">Projects</RouterLink> 
+    <RouterLink to="/tasks-and-Projects">Tasks and Projects</RouterLink> |
+    <RouterLink to="/tasks">Tasks (will be removed soon)</RouterLink>
   </nav>
   <RouterView />
   <footer>
