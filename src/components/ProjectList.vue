@@ -41,7 +41,7 @@ function moveToTop(i: number){
         <th>
           Name (Link)
         </th>
-        <th>
+        <th class="hide-on-mobile">
           Effort Left
         </th>
         <th>
@@ -55,7 +55,7 @@ function moveToTop(i: number){
             <span v-if="project.isArchived == true">
               Archived -
             </span>
-            <span v-else>
+            <span v-else class="hide-on-mobile">
               {{ i + 1 }} - 
             </span>
             <a :href="project.link" target="_blank" v-if="!!project.link">
@@ -65,7 +65,7 @@ function moveToTop(i: number){
               {{ project.name }}
             </span>
           </td>
-          <td>
+          <td class="hide-on-mobile">
             <span v-if="project.isArchived == false">
               {{ project.remainingEffort || 'N/A' }}
             </span>
@@ -75,8 +75,8 @@ function moveToTop(i: number){
             <font-awesome-icon icon="archive" @click="archiveProject(project, i)"></font-awesome-icon>
             <font-awesome-icon icon="arrow-down" @click="moveDown(i)" v-if="i < (projects.length - 1)"></font-awesome-icon>
             <template v-if="i !== 0">
-              <font-awesome-icon icon="arrow-up" @click="moveUp(i)"></font-awesome-icon> | 
-              <a @click="moveToTop(i)">To Top</a>
+              <font-awesome-icon icon="arrow-up" @click="moveUp(i)"></font-awesome-icon>  
+              <a @click="moveToTop(i)" class="hide-on-mobile"> To Top</a>
             </template>
             
           </td>
@@ -90,4 +90,5 @@ function moveToTop(i: number){
 a {
   padding: 0px !important;
 }
+
 </style>
